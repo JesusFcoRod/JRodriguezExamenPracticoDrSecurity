@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JRodriguezExamenPracticoDrSecurityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EstadoCiudad" Type="varchar" MaxLength="50" />
+          <Property Name="DelegacionMunicipio" Type="varchar" MaxLength="50" />
+          <Property Name="Colonia" Type="varchar" MaxLength="50" />
+          <Property Name="NumeroExterior" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="25" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Sexo" Type="varchar" MaxLength="10" />
+          <Property Name="EstadoNacimiento" Type="varchar" MaxLength="25" />
+          <Property Name="IdDireccion" Type="int" />
+          <Property Name="CURP" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Persona__IdDirec__173876EA">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="IdDireccion" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PersonaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApelllidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="IdDireccion" Type="int" Mode="In" />
+          <Parameter Name="CURP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PersonaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PersonaFetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PersonaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PersonaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApelllidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="IdDireccion" Type="int" Mode="In" />
+          <Parameter Name="CURP" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="JRodriguezExamenPracticoDrSecurityModelStoreContainer">
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Persona__IdDirec__173876EA" Association="Self.FK__Persona__IdDirec__173876EA">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JRodriguezExamenPracticoDrSecurityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstadoCiudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DelegacionMunicipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroExterior" Type="Int32" />
+          <NavigationProperty Name="Personas" Relationship="JRodriguezExamenPracticoDrSecurityModel.FK__Persona__IdDirec__173876EA" FromRole="Direccion" ToRole="Persona" />
+        </EntityType>
+        <EntityContainer Name="JRodriguezExamenPracticoDrSecurityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Direccions" EntityType="Self.Direccion" />
+          <FunctionImport Name="PersonaGetAll" ReturnType="Collection(JRodriguezExamenPracticoDrSecurityModel.PersonaGetAll_Result)" />
+          <EntitySet Name="Personas" EntityType="JRodriguezExamenPracticoDrSecurityModel.Persona" />
+          <AssociationSet Name="FK__Persona__IdDirec__173876EA" Association="JRodriguezExamenPracticoDrSecurityModel.FK__Persona__IdDirec__173876EA">
+            <End Role="Direccion" EntitySet="Direccions" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
+          <FunctionImport Name="PersonaDelete">
+          <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PersonaFetById" ReturnType="Collection(JRodriguezExamenPracticoDrSecurityModel.PersonaFetById_Result)">
+          <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PersonaUpdate">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApelllidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="EstadoNacimiento" Mode="In" Type="String" />
+            <Parameter Name="IdDireccion" Mode="In" Type="Int32" />
+            <Parameter Name="CURP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PersonaAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApelllidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="EstadoNacimiento" Mode="In" Type="String" />
+            <Parameter Name="IdDireccion" Mode="In" Type="Int32" />
+            <Parameter Name="CURP" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PersonaGetAll_Result">
+          <Property Type="Int32" Name="IdPersona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="EstadoNacimiento" Nullable="true" MaxLength="25" />
+          <Property Type="Int32" Name="IdDireccion" Nullable="true" />
+          <Property Type="String" Name="EstadoCiudad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DelegacionMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Colonia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NumeroExterior" Nullable="true" />
+          <Property Type="String" Name="CURP" Nullable="true" MaxLength="25" />
+        </ComplexType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoNacimiento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="IdDireccion" Type="Int32" />
+          <Property Name="CURP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Direccion" Relationship="JRodriguezExamenPracticoDrSecurityModel.FK__Persona__IdDirec__173876EA" FromRole="Persona" ToRole="Direccion" />
+        </EntityType>
+        <Association Name="FK__Persona__IdDirec__173876EA">
+          <End Type="JRodriguezExamenPracticoDrSecurityModel.Direccion" Role="Direccion" Multiplicity="0..1" />
+          <End Type="JRodriguezExamenPracticoDrSecurityModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="IdDireccion" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="PersonaFetById_Result">
+          <Property Type="Int32" Name="IdPersona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="EstadoNacimiento" Nullable="true" MaxLength="25" />
+          <Property Type="Int32" Name="IdDireccion" Nullable="true" />
+          <Property Type="String" Name="EstadoCiudad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DelegacionMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Colonia" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NumeroExterior" Nullable="true" />
+          <Property Type="String" Name="CURP" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JRodriguezExamenPracticoDrSecurityModelStoreContainer" CdmEntityContainer="JRodriguezExamenPracticoDrSecurityEntities">
+          <EntitySetMapping Name="Direccions">
+            <EntityTypeMapping TypeName="JRodriguezExamenPracticoDrSecurityModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="EstadoCiudad" ColumnName="EstadoCiudad" />
+                <ScalarProperty Name="DelegacionMunicipio" ColumnName="DelegacionMunicipio" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="NumeroExterior" ColumnName="NumeroExterior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PersonaGetAll" FunctionName="JRodriguezExamenPracticoDrSecurityModel.Store.PersonaGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JRodriguezExamenPracticoDrSecurityModel.PersonaGetAll_Result">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="EstadoNacimiento" ColumnName="EstadoNacimiento" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="EstadoCiudad" ColumnName="EstadoCiudad" />
+                <ScalarProperty Name="DelegacionMunicipio" ColumnName="DelegacionMunicipio" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="NumeroExterior" ColumnName="NumeroExterior" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="JRodriguezExamenPracticoDrSecurityModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="EstadoNacimiento" ColumnName="EstadoNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PersonaDelete" FunctionName="JRodriguezExamenPracticoDrSecurityModel.Store.PersonaDelete" />
+          <FunctionImportMapping FunctionImportName="PersonaFetById" FunctionName="JRodriguezExamenPracticoDrSecurityModel.Store.PersonaFetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JRodriguezExamenPracticoDrSecurityModel.PersonaFetById_Result">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="EstadoNacimiento" ColumnName="EstadoNacimiento" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="EstadoCiudad" ColumnName="EstadoCiudad" />
+                <ScalarProperty Name="DelegacionMunicipio" ColumnName="DelegacionMunicipio" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="NumeroExterior" ColumnName="NumeroExterior" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PersonaUpdate" FunctionName="JRodriguezExamenPracticoDrSecurityModel.Store.PersonaUpdate" />
+          <FunctionImportMapping FunctionImportName="PersonaAdd" FunctionName="JRodriguezExamenPracticoDrSecurityModel.Store.PersonaAdd" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
